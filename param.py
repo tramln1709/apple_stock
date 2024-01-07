@@ -1,0 +1,12 @@
+DATA_SOURCE_PATH = "data_source/"
+DATA_OUT_PUT_PATH = "data_output/"
+DATA_FILE_NAME = "finance-charts-apple.csv"
+COLUMN_INDEX = "Date"
+BUSINESS_DATE_NUMBER = 4  # FRIDAY
+OUTPUT_ERROR_FILENAME = "dirty_data"
+OUTPUT_ERROR_FILENAME_DUPLICATE = "duplicate"
+DERIVATIVE_COLUMN = "AAPL.Close"
+DERIVATIVE_VOLUME = "AAPL.Volume"
+OUTPUT_EXCEEDED_FILENAME = "exceeded_avg.csv"
+PLOT_AXIS_WEEK_MEAN ={"x":"Week_of_Year","open":"AAPL.Open","high":"AAPL.High","low":"AAPL.Low","close":"AAPL.Close"}
+PLOT_AXIS_WEEK_DAY = {"x":"Date","open":"AAPL.Open","high":"AAPL.High","low":"AAPL.Low","close":"AAPL.Close"}
