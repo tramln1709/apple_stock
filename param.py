@@ -8,5 +8,5 @@ OUTPUT_ERROR_FILENAME_DUPLICATE = "duplicate"
 DERIVATIVE_COLUMN = "AAPL.Close"
 DERIVATIVE_VOLUME = "AAPL.Volume"
 OUTPUT_EXCEEDED_FILENAME = "exceeded_avg.csv"
-PLOT_AXIS_WEEK_MEAN ={"x":"Week_of_Year","open":"AAPL.Open","high":"AAPL.High","low":"AAPL.Low","close":"AAPL.Close"}
+PLOT_AXIS_WEEK_MEAN ={"x":"week_of_year","open":"AAPL.Open","high":"AAPL.High","low":"AAPL.Low","close":"AAPL.Close"}
 PLOT_AXIS_WEEK_DAY = {"x":"Date","open":"AAPL.Open","high":"AAPL.High","low":"AAPL.Low","close":"AAPL.Close"}

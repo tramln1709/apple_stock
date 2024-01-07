@@ -13,10 +13,12 @@ def validate_dirty_data(df: DataFrame) -> DataFrame:
     try:
         logger.info('Clean Dirty Data Start')
         date_validation = [CustomElementValidation(lambda d: U.check_date(d), 'It should be YYYY-mm-dd')]
-        int_validation = [CustomElementValidation(lambda d: U.check_int(d), 'is not integer')]
+        int_validation = [CustomElementValidation(lambda d: U.check_int(d), 'is not positive integer')]
         null_validation = [CustomElementValidation(lambda d: U.check_null(d), 'this field cannot be null')]
+        trend_validation = [CustomElementValidation(lambda d: U.check_trend(d), 'trend should be increasing or decreasing')]
         out_of_business_date = [
             CustomElementValidation(lambda d: U.check_day_of_week(d, P.BUSINESS_DATE_NUMBER), 'out of business date')]
+        int_adjust = [CustomElementValidation(lambda d: U.check_adjust(d), 'is not integer')]
 
         schema = pandas_schema.Schema([
             Column("Date", date_validation + null_validation + out_of_business_date),
@@ -25,11 +27,11 @@ def validate_dirty_data(df: DataFrame) -> DataFrame:
             Column("AAPL.Low", int_validation + null_validation),
             Column("AAPL.Close", int_validation + null_validation),
             Column("AAPL.Volume", int_validation + null_validation),
-            Column("AAPL.Adjusted", int_validation + null_validation),
+            Column("AAPL.Adjusted", int_adjust + null_validation),
             Column("dn", int_validation + null_validation),
             Column("mavg", int_validation + null_validation),
             Column("up", int_validation + null_validation),
-            Column("direction", null_validation)
+            Column("direction", trend_validation + null_validation)
         ])
 
         errors = schema.validate(df)

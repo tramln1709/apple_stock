@@ -36,8 +36,8 @@ def calculate_avg_volume(df: DataFrame, derivative_column: str):
 def generate_metric(df: DataFrame) -> DataFrame:
     try:
         logger.info('Generate Metric Start ')
-        df_agg = df.groupby(["Week_of_Year"])[["AAPL.Close", "AAPL.Low", "AAPL.High", "AAPL.Open"]].mean().reset_index()
+        df_agg = df.groupby(["week_of_year"])[["AAPL.Close", "AAPL.Low", "AAPL.High", "AAPL.Open"]].mean().reset_index()
         logger.info('Generate Metric End ')
-        return df_agg.sort_values("Week_of_Year", ascending=[True])
+        return df_agg.sort_values("week_of_year", ascending=[True])
     except Exception as e:
         logger.error(f"error in function generate_metric {e}:e")

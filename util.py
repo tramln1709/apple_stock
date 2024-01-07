@@ -24,16 +24,27 @@ def check_date(d: str) -> bool:
 
 def check_int(num: str) -> bool:
     try:
+        if int(num)>0:
+            return True
+    except ValueError:
+        return False
+
+def check_adjust(num: str) -> bool:
+    try:
         int(num)
     except ValueError:
         return False
     return True
 
-
 def check_null(v: str) -> bool:
     if v is not np.nan:
         return True
     return False
+
+def check_trend(v: str) -> bool:
+    if v not in  ["Increasing","Decreasing"]:
+        return False
+    return True
 
 
 def check_day_of_week(d: str, business_date_number: int) -> bool:
