@@ -13,7 +13,7 @@ def validate_dirty_data(df: DataFrame) -> DataFrame:
     try:
         logger.info('Clean Dirty Data Start')
         date_validation = [CustomElementValidation(lambda d: U.check_date(d), 'It should be YYYY-mm-dd')]
-        int_validation = [CustomElementValidation(lambda d: U.check_int(d), 'is not positive integer')]
+        int_validation = [CustomElementValidation(lambda d: U.check_price(d), 'is not positive integer')]
         null_validation = [CustomElementValidation(lambda d: U.check_null(d), 'this field cannot be null')]
         trend_validation = [CustomElementValidation(lambda d: U.check_trend(d), 'trend should be increasing or decreasing')]
         out_of_business_date = [

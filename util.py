@@ -1,10 +1,10 @@
+import subprocess
+
 import pandas as pd
 from pandas.core.frame import DataFrame
-import numpy as np
 import datetime as dt
 from datetime import datetime
 import plotly.graph_objects as go
-from dash import Dash, dcc, html
 
 
 def read_data(path: str, filename: str, column_index: str) -> DataFrame:
@@ -22,27 +22,30 @@ def check_date(d: str) -> bool:
     return True
 
 
-def check_int(num: str) -> bool:
+def check_price(num: str) -> bool:
     try:
-        if int(num)>0:
+        if float(num) > 0:
             return True
     except ValueError:
         return False
 
+
 def check_adjust(num: str) -> bool:
     try:
-        int(num)
+        float(num)
     except ValueError:
         return False
     return True
 
+
 def check_null(v: str) -> bool:
-    if v is not np.nan:
+    if v:
         return True
     return False
 
+
 def check_trend(v: str) -> bool:
-    if v not in  ["Increasing","Decreasing"]:
+    if v not in ["Increasing", "Decreasing"]:
         return False
     return True
 
@@ -81,3 +84,17 @@ def agg_max(df: DataFrame, column: str) -> float:
 
 def agg_mean(df: DataFrame, column: str) -> float:
     return df[column].mean()
+
+
+def exec_shell_cmd(command):
+    if not command:
+        raise Exception("Invalid command: {}".format(command))
+
+    proc = subprocess.Popen([command], shell=True, stdout=subprocess.PIPE, stderr=subprocess.STDOUT, close_fds=True)
+    std_out, std_err = proc.communicate()
+    message = std_out.decode("utf-8")
+    code = proc.returncode
+    if message and code != 0:
+        raise Exception("exec shell command with error: {}".format(message))
+    else:
+        return message
