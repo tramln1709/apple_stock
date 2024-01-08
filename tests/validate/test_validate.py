@@ -5,10 +5,10 @@ import param as P
 
 
 class TestValidate(TestCase):
-    def check_validate_dirty_data(self):
+    def test_validate_dirty_data(self):
         df = U.read_data(P.DATA_SOURCE_PATH, P.DATA_FILE_NAME, P.COLUMN_INDEX)
         self.log(V.validate_dirty_data(df))
 
-    def check_validate_duplicate(self):
+    def test_validate_duplicate(self):
         df = U.read_data(P.DATA_SOURCE_PATH, P.DATA_FILE_NAME, P.COLUMN_INDEX)
-        self.log(V.validate_duplicate(df))
+        self.log(V.validate_duplicate(df,P.COLUMN_INDEX))
