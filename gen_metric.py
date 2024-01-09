@@ -20,17 +20,25 @@ def agg_min_max_avg_close_price(df: DataFrame, derivative_column: str) -> DataFr
         logger.error(f"error in function agg_min_max_avg_close_price {e}:e")
 
 
-def calculate_avg_volume(df: DataFrame, derivative_column: str):
+def calculate_avg_volume(df: DataFrame, derivative_column: str) -> float:
     try:
         logger.info('Calculate avg Volume Start ')
         avg_volume_value = U.agg_mean(df, derivative_column)
-        df = df.query("`{}` > @avg_volume_value ".format(derivative_column))
-        logger.info('Exceeded file saved at {}{}'.format(P.DATA_OUT_PUT_PATH,P.OUTPUT_EXCEEDED_FILENAME))
-        U.save_csv_data(pd.DataFrame(df), P.DATA_OUT_PUT_PATH, P.OUTPUT_EXCEEDED_FILENAME)
-        logger.info("Calculate avg Volume End")
+        return avg_volume_value
+    except Exception as e:
+        logger.error("error in function calculate_avg_volume {}:".format(e))
+
+
+def save_exceed_avg_volume(df: DataFrame, derivative_column: str, avg_volume: float, output_dir) -> DataFrame:
+    try:
+        logger.info("Save exceed avg volume Start")
+        df = df.query("`{}` > @avg_volume ".format(derivative_column))
+        logger.info('Exceeded file saved at {}{}'.format(output_dir, P.OUTPUT_EXCEEDED_FILENAME))
+        U.save_csv_data(pd.DataFrame(df), output_dir, P.OUTPUT_EXCEEDED_FILENAME)
+        logger.info("Save exceed avg volume End")
         return df
     except Exception as e:
-        logger.error(f"error in function calculate_avg_volume {e}:e")
+        logger.error(f"error in function save_exceed_avg_volume {e}:e")
 
 
 def generate_metric(df: DataFrame) -> DataFrame:

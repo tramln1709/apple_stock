@@ -9,7 +9,7 @@ import pandas as pd
 logger = mylogger.get_logger()
 
 
-def validate_dirty_data(df: DataFrame) -> DataFrame:
+def validate_dirty_data(df: DataFrame, output_dir) -> DataFrame:
     try:
         logger.info('Clean Dirty Data Start')
         date_validation = [CustomElementValidation(lambda d: U.check_date(d), 'It should be YYYY-mm-dd')]
@@ -37,20 +37,20 @@ def validate_dirty_data(df: DataFrame) -> DataFrame:
         errors = schema.validate(df)
         errors_index_rows = [e.row for e in errors]
         data_clean = df.drop(index=errors_index_rows)
-        U.save_csv_data(pd.DataFrame({'col': errors}), P.DATA_OUT_PUT_PATH, P.OUTPUT_ERROR_FILENAME)
-        logger.info('Dirty File Saved at  {}{}'.format(P.DATA_OUT_PUT_PATH, P.OUTPUT_ERROR_FILENAME))
+        U.save_csv_data(pd.DataFrame({'col': errors}), output_dir, P.OUTPUT_ERROR_FILENAME)
+        logger.info('Dirty File Saved at  {}{}'.format(output_dir, P.OUTPUT_ERROR_FILENAME))
         logger.info('Clean Dirty Data End')
         return data_clean
     except Exception as e:
         logger.error(f"error in function validate_dirty_data {e}:e")
 
 
-def validate_duplicate(df: DataFrame, columns: list) -> DataFrame:
+def validate_duplicate(df: DataFrame, columns: list, output_dir) -> DataFrame:
     try:
         logger.info('Check Duplicate Data Start')
         df_duplicate = U.unique_columns(df, columns=columns)
-        U.save_csv_data(df_duplicate, P.DATA_OUT_PUT_PATH, P.OUTPUT_ERROR_FILENAME_DUPLICATE)
-        logger.info('Dirty File Saved at  {}{}'.format(P.DATA_OUT_PUT_PATH, P.OUTPUT_ERROR_FILENAME_DUPLICATE))
+        U.save_csv_data(df_duplicate, output_dir, P.OUTPUT_ERROR_FILENAME_DUPLICATE)
+        logger.info('Dirty File Saved at  {}{}'.format(output_dir, P.OUTPUT_ERROR_FILENAME_DUPLICATE))
         df = df.drop_duplicates(subset=columns, keep=False)
         logger.info(
             'Data is cleaned and removed all of dirty data and duplicate data. Total records after clean is {0}'.format(

@@ -1,3 +1,4 @@
+import os.path
 import subprocess
 
 import pandas as pd
@@ -7,9 +8,8 @@ from datetime import datetime
 import plotly.graph_objects as go
 
 
-def read_data(path: str, filename: str, column_index: str) -> DataFrame:
-    fullpath = path + filename
-    df = pd.read_csv(fullpath)
+def read_data(filename: str, column_index: str) -> DataFrame:
+    df = pd.read_csv(filename)
     df.set_index(column_index)
     return df
 
@@ -98,3 +98,22 @@ def exec_shell_cmd(command):
         raise Exception("exec shell command with error: {}".format(message))
     else:
         return message
+
+
+def check_file_existing(file_path):
+    """
+    check if file is existing
+    :param file_path:
+    :return: True if existing otherwise return False
+    """
+    return os.path.isfile(file_path)
+
+
+def check_writing_permission(directory_path):
+    """
+    check if the user has writing permission on the input dir
+    :param directory_path:
+    :return: True if the use has writing permission otherwise False
+    """
+    permissions = os.stat(directory_path).st_mode
+    return permissions & 0o200
