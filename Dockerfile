@@ -13,6 +13,6 @@ RUN pip install --upgrade pip;\
 
 WORKDIR /usr/app/apple_interview
 
-COPY . .
+COPY src/stock_analyzer .
 
 CMD ["python3", "process.py"]

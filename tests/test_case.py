@@ -3,8 +3,9 @@ import os.path
 import unittest
 from functools import reduce
 
-import util as U
-import constants as C
+from stock_analyzer import util as U
+
+FILE_DIR = os.path.dirname(os.path.abspath(__file__))
 
 
 class TestCase(unittest.TestCase):
@@ -20,9 +21,9 @@ class TestCase(unittest.TestCase):
 
     def setUp(self) -> None:
         path = self.__class__.__module__.split('.')[1:]
-        path = [C.PROJECT_DIR, self.REGRESSION_DIR] + path
+        path = [FILE_DIR, "..", self.REGRESSION_DIR] + path
         class_dir = reduce(os.path.join, path)
-        test_dir = os.path.join(class_dir, "test")
+        test_dir = os.path.join(class_dir, "tests")
         gold_dir = os.path.join(class_dir, "gold")
 
         for dir in [class_dir, gold_dir, test_dir]:

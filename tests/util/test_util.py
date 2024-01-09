@@ -1,7 +1,8 @@
-from tests.test_case import TestCase
-import util as U
 import pandas as pd
-import param as P
+
+from stock_analyzer import param as P
+from stock_analyzer import util as U
+from tests.test_case import TestCase
 
 
 class TestUtil(TestCase):
@@ -37,30 +38,30 @@ class TestUtil(TestCase):
         self.log(U.check_trend("Down"))
 
     def test_check_date_of_week_valid(self):
-        self.log(U.check_day_of_week("2013-03-12",4))
+        self.log(U.check_day_of_week("2013-03-12", 4))
 
     def test_check_date_of_week_invalid(self):
-        self.log(U.check_day_of_week("2024-01-07",4))
+        self.log(U.check_day_of_week("2024-01-07", 4))
 
     def test_agg_min(self):
         data = [['tom', 10], ['nick', 15], ['juli', 14]]
         df = pd.DataFrame(data, columns=['Name', 'Age'])
-        self.log(U.agg_min(df,"Age"))
+        self.log(U.agg_min(df, "Age"))
 
     def test_agg_max(self):
         data = [['tom', 10], ['nick', 15], ['juli', 14]]
         df = pd.DataFrame(data, columns=['Name', 'Age'])
-        self.log(U.agg_max(df,"Age"))
+        self.log(U.agg_max(df, "Age"))
 
     def test_agg_mean(self):
         data = [['tom', 10], ['nick', 15], ['juli', 14]]
         df = pd.DataFrame(data, columns=['Name', 'Age'])
-        self.log(U.agg_mean(df,"Age"))
+        self.log(U.agg_mean(df, "Age"))
 
     def test_unique_columns_invalid(self):
-        data = [['tom', 10], ['nick', 15], ['juli', 14],['tom', 10]]
+        data = [['tom', 10], ['nick', 15], ['juli', 14], ['tom', 10]]
         df = pd.DataFrame(data, columns=['Name', 'Age'])
-        self.log(U.unique_columns(df , ["Name"]))
+        self.log(U.unique_columns(df, ["Name"]))
 
     def test_unique_columns_valid(self):
         data = [['tom', 10], ['nick', 15], ['juli', 14]]
@@ -68,10 +69,4 @@ class TestUtil(TestCase):
         self.log(U.unique_columns(df, ["Name"]))
 
     def test_read_data(self):
-        self.log(U.read_data(P.DATA_SOURCE_PATH,P.DATA_FILE_NAME,"Date"))
-
-
-
-
-
-
+        self.log(U.read_data(P.DATA_SOURCE_PATH + P.DATA_FILE_NAME, "Date"))
