@@ -1,1 +1,3 @@
 ,col
+0,"{row: 0, column: ""Date""}: ""2015-02-30"" It should be YYYY-mm-dd"
+1,"{row: 0, column: ""Date""}: ""2015-02-30"" out of business date"
