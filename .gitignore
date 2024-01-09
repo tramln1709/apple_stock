@@ -74,6 +74,9 @@ docs/_build/
 # PyBuilder
 .pybuilder/
 target/
+build
+dist
+
 
 # Jupyter Notebook
 .ipynb_checkpoints
@@ -160,3 +163,4 @@ cython_debug/
 .idea/
 __pycache__
 .DS_Store
+.coverage
