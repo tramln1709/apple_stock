@@ -1,11 +1,11 @@
 import pandas as pd
 from pandas import DataFrame
 
-from stock_analyzer import param as P
-from stock_analyzer import util as U
-from stock_analyzer.mylogger import get_logger
+import param as P
+import util as U
+import mylogger as L
 
-logger = get_logger()
+logger = L.get_logger()
 
 
 def agg_min_max_avg_close_price(df: DataFrame, derivative_column: str) -> DataFrame:

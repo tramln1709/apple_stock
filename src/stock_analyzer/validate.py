@@ -4,11 +4,11 @@ from pandas.core.frame import DataFrame
 from pandas_schema import Column
 from pandas_schema.validation import CustomElementValidation
 
-from stock_analyzer import param as P
-from stock_analyzer import util as U
-from stock_analyzer.mylogger import get_logger
+import param as P
+import util as U
+import mylogger as L
 
-logger = get_logger()
+logger = L.get_logger()
 
 
 def validate_dirty_data(df: DataFrame, output_dir) -> DataFrame:

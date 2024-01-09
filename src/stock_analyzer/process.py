@@ -1,15 +1,15 @@
 from dash import Dash, dcc, html
 from pandas import DataFrame
 
-from stock_analyzer import my_errors as E
-from stock_analyzer import gen_metric as G
-from stock_analyzer import param as P
-from stock_analyzer import transform as T
-from stock_analyzer import util as U
-from stock_analyzer import validate as V
-from stock_analyzer.mylogger import get_logger
+import my_errors as E
+import gen_metric as G
+import param as P
+import transform as T
+import util as U
+import validate as V
+import mylogger as L
 
-logger = get_logger()
+logger = L.get_logger()
 
 
 def clean_transform(data_file: str, output_dir: str) -> DataFrame:
@@ -75,7 +75,7 @@ def stock_analyze(input_file, output_dir):
 
 
 if __name__ == "__main__":
-    input_file = "/Users/tramln/working/apple_interview.bak/data_source/finance-charts-apple.csv"
-    output_dir = "/Users/tramln/working/apple_interview.bak/data_output"
+    input_file = "/Users/tramln/working/apple_stock/data_source/finance-charts-apple.csv"
+    output_dir = "/Users/tramln/working/apple_stock/data_output"
 
     stock_analyze(input_file, output_dir)

@@ -1,8 +1,8 @@
-from stock_analyzer.mylogger import get_logger
+import mylogger as L
 import pandas as pd
 from pandas.core.frame import DataFrame
 
-logger = get_logger()
+logger = L.get_logger()
 
 
 def transform_data(df: DataFrame) -> DataFrame:
