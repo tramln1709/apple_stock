@@ -34,17 +34,24 @@ Run the following command to install dependencies:
 The project includes the following components:
 - data_source: This is the location that stores the data source.
 - data_output: This is the location that saves the output results of the data.
+- src: contents all source code
+- tests: contents all test cases
+- regression: content all gold files for testing
 - Dockerfile: This file is used to create a Docker image.
-- Log: The log is implemented in the file 'mylogger.py,' and the log file is 'apple_stock.log.' This file keeps track of all the steps in the processing.
-- param: This is the place to declare all parameters used in the project.
-- requirements: This lists all the libraries that need to be installed in the project.
-- util: This is the place that defines all utility functions used for this project.
-- validate: This is the place that defines functions used for validating data in the project.
-- transform: This is the place that defines functions used for transforming data in the project.
-- gen_metric: This is the place that defines functions used for aggregating data and generating metric data.
-- process: This file defines the main function.
+- setup.py: is for creating pip install package
+- app.py: is an sample of using the stock_analyzer lib after installation
+
+## Build pip installation library
+go into the project folder, apple_stock, and run the command:
+```python setup.py bdist_wheel sdist```
+to use the library, we need to install it into the venv with pip install command:
+- active the venv
+- go the apple_stock folder project and run the pip command:
+ ```pip install .```
+- run ```pip freeze``` to confirm the lib installed ```StockAnalyzer @ file:///Users/tramln/working/apple_stock```
+
 ## Technical explanation 
-The project is compatible with Python version 3.10 and necessitates specific libraries outlined below.
+The project is compatible with Python version 3.8 and necessitates specific libraries outlined below.
 - Pandas 2.1.4
 - Pandas_schema 0.3.6
 - Dash 2.14.2
