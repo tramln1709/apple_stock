@@ -1,13 +1,15 @@
+import os
+
 from dash import Dash, dcc, html
 from pandas import DataFrame
 
-import my_errors as E
 import gen_metric as G
+import my_errors as E
+import mylogger as L
 import param as P
 import transform as T
 import util as U
 import validate as V
-import mylogger as L
 
 logger = L.get_logger()
 
@@ -75,7 +77,8 @@ def stock_analyze(input_file, output_dir):
 
 
 if __name__ == "__main__":
-    input_file = "/Users/tramln/working/apple_stock/data_source/finance-charts-apple.csv"
-    output_dir = "/Users/tramln/working/apple_stock/data_output"
-
+    FILE_DIR = os.path.dirname(os.path.abspath(__file__))
+    PROJECT_DIR = os.path.join(FILE_DIR, "..")
+    input_file = os.path.join(PROJECT_DIR, "data_source", "finance-charts-apple.csv")
+    output_dir = os.path.join(PROJECT_DIR, "data_output")
     stock_analyze(input_file, output_dir)

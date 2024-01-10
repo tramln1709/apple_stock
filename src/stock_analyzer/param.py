@@ -1,5 +1,5 @@
-DATA_SOURCE_PATH = "../../data_source/"
-DATA_OUT_PUT_PATH = "../../data_output/"
+DATA_SOURCE_PATH = "../data_source/"
+DATA_OUT_PUT_PATH = "../data_output/"
 DATA_FILE_NAME = "finance-charts-apple.csv"
 COLUMN_INDEX = "Date"
 BUSINESS_DATE_NUMBER = 4  # FRIDAY
